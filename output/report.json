@@ -1,0 +1,132 @@
+{
+  "generatedAt": "2026-07-30T01:14:26.656Z",
+  "appliedFilter": null,
+  "summary": {
+    "total": 12,
+    "active": 10,
+    "inactive": 2,
+    "averageFee": 132250,
+    "mostExpensive": {
+      "id": "doc002",
+      "name": "Escritura de constitución de sociedad",
+      "category": "escrituras",
+      "fee": 480000,
+      "availableSlots": 3,
+      "active": true
+    },
+    "cheapest": {
+      "id": "doc011",
+      "name": "Copia certificada de escritura",
+      "category": "certificaciones",
+      "fee": 12000,
+      "availableSlots": 50,
+      "active": true
+    },
+    "categories": [
+      "escrituras",
+      "poderes",
+      "testamentos",
+      "autenticaciones",
+      "actas",
+      "certificaciones"
+    ]
+  },
+  "documents": [
+    {
+      "id": "doc001",
+      "name": "Escritura de compraventa de inmueble",
+      "category": "escrituras",
+      "fee": 350000,
+      "availableSlots": 8,
+      "active": true
+    },
+    {
+      "id": "doc002",
+      "name": "Escritura de constitución de sociedad",
+      "category": "escrituras",
+      "fee": 480000,
+      "availableSlots": 3,
+      "active": true
+    },
+    {
+      "id": "doc003",
+      "name": "Poder general",
+      "category": "poderes",
+      "fee": 45000,
+      "availableSlots": 20,
+      "active": true
+    },
+    {
+      "id": "doc004",
+      "name": "Poder especial",
+      "category": "poderes",
+      "fee": 35000,
+      "availableSlots": 15,
+      "active": true
+    },
+    {
+      "id": "doc005",
+      "name": "Testamento abierto",
+      "category": "testamentos",
+      "fee": 220000,
+      "availableSlots": 5,
+      "active": true
+    },
+    {
+      "id": "doc006",
+      "name": "Testamento cerrado",
+      "category": "testamentos",
+      "fee": 260000,
+      "availableSlots": 0,
+      "active": false
+    },
+    {
+      "id": "doc007",
+      "name": "Autenticación de firma",
+      "category": "autenticaciones",
+      "fee": 15000,
+      "availableSlots": 40,
+      "active": true
+    },
+    {
+      "id": "doc008",
+      "name": "Autenticación de documento privado",
+      "category": "autenticaciones",
+      "fee": 18000,
+      "availableSlots": 30,
+      "active": true
+    },
+    {
+      "id": "doc009",
+      "name": "Acta de conciliación extrajudicial",
+      "category": "actas",
+      "fee": 90000,
+      "availableSlots": 6,
+      "active": true
+    },
+    {
+      "id": "doc010",
+      "name": "Acta de declaración juramentada",
+      "category": "actas",
+      "fee": 40000,
+      "availableSlots": 12,
+      "active": true
+    },
+    {
+      "id": "doc011",
+      "name": "Copia certificada de escritura",
+      "category": "certificaciones",
+      "fee": 12000,
+      "availableSlots": 50,
+      "active": true
+    },
+    {
+      "id": "doc012",
+      "name": "Reconocimiento de firma y contenido",
+      "category": "autenticaciones",
+      "fee": 22000,
+      "availableSlots": 0,
+      "active": false
+    }
+  ]
+}
