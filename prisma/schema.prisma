@@ -1,0 +1,49 @@
+// Prisma Schema — Proyecto Semana 05 — Dominio Notaría
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum DocumentCategory {
+  escrituras
+  poderes
+  testamentos
+  autenticaciones
+  actas
+}
+
+model Notary {
+  id            Int      @id @default(autoincrement())
+  name          String
+  licenseNumber String   @unique
+  city          String
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  documents Document[]
+
+  @@map("notaries")
+}
+
+model Document {
+  id             Int              @id @default(autoincrement())
+  code           String           @unique
+  name           String
+  category       DocumentCategory
+  fee            Int
+  availableSlots Int              @default(0)
+  active         Boolean          @default(true)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  notaryId Int?
+  notary   Notary? @relation(fields: [notaryId], references: [id])
+
+  @@map("documents")
+}
