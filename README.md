@@ -17,6 +17,18 @@ idempotente.
 Se mantiene la relación 1:N conceptual de la semana 05 (`Notary` → `Document`),
 ahora modelada como referencia de Mongoose en vez de foreign key de Postgres.
 
+> **Actualización posterior (hallazgo de semana 08)**: `updateDocumentSchema`
+> se declaraba como `createDocumentSchema.partial()`. En Zod, `.partial()`
+> marca los campos como opcionales pero **no elimina sus `.default(...)`**
+> — un `PUT` parcial que omitía `availableSlots`/`active` los reseteaba
+> silenciosamente a `0`/`true` en vez de dejarlos intactos. No se detectó al
+> entregar esta semana porque las pruebas de `PUT` de entonces siempre
+> incluían esos campos en el body. Corregido: `updateDocumentSchema` ahora
+> se declara a mano, sin `.default()`. `updateNotarySchema` no tenía este
+> problema (ningún campo de `Notary` usa `.default()`). Verificado de nuevo
+> con `curl` real: un `PUT { "fee": 999999 }` ya no toca
+> `availableSlots`/`active`.
+
 ## Entidades
 
 **`Notary` (secundaria, sin referencias)** — colección `notaries`:
