@@ -15,6 +15,18 @@ errores de base de datos (`P2002`, `P2025`, `P2003`) integrado con el
 secundario **`Notary`** (notaría) con relación **1:N** (`Notary` → `Document`),
 ya anticipado en el dominio desde la semana 04.
 
+> **Actualización posterior (hallazgo de semana 08)**: `updateDocumentSchema`
+> se declaraba como `createDocumentSchema.partial()`. En Zod, `.partial()`
+> marca los campos como opcionales pero **no elimina sus `.default(...)`**
+> — un `PUT` parcial que omitía `availableSlots`/`active` los reseteaba
+> silenciosamente a `0`/`true` en la base de datos en vez de dejarlos
+> intactos (`z.object({ n: z.number().default(0) }).partial().parse({})`
+> sigue devolviendo `{ n: 0 }`, no `{}`). No se detectó al entregar esta
+> semana porque las pruebas de `PUT` de entonces siempre incluían esos
+> campos en el body. Corregido: `updateDocumentSchema` ahora se declara a
+> mano, sin `.default()` en ningún campo. Verificado de nuevo con `curl`
+> real: un `PUT { "fee": 999999 }` ya no toca `availableSlots`/`active`.
+
 ## Diagrama de entidades
 
 ```
