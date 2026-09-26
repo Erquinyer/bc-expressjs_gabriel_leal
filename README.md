@@ -13,6 +13,16 @@ protege el recurso **`Document`** (trámite notarial, trabajado desde la
 semana 01): todas las rutas CRUD de `/api/v1/documents` requieren un
 `accessToken` válido en cookie HttpOnly.
 
+> **Actualización posterior (hallazgo de semana 08)**: `updateDocumentSchema`
+> se declaraba como `createDocumentSchema.partial()`. En Zod, `.partial()`
+> marca los campos como opcionales pero **no elimina sus `.default(...)`**
+> — un `PATCH` parcial que omitía `availableSlots`/`active` los reseteaba
+> silenciosamente a `0`/`true` en vez de dejarlos intactos. No se detectó al
+> entregar esta semana porque las pruebas de `PATCH` de entonces siempre
+> incluían esos campos en el body. Corregido: `updateDocumentSchema` ahora
+> se declara a mano, sin `.default()`. Verificado de nuevo con `curl` real:
+> un `PATCH { "fee": 999999 }` ya no toca `availableSlots`/`active`.
+
 ## Sistema de autenticación
 
 | Ruta                          | Público/Protegida | Descripción                                             |
